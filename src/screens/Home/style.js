@@ -6,6 +6,10 @@ const styles = StyleSheet.create({
         color: 'white',
         width: 200
     },
+    schoolItem: {
+        flexDirection: 'row',
+        backgroundColor: 'black'
+    }
 });
 
 

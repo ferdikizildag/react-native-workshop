@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, SafeAreaView, TouchableOpacity, Button } from 'react-native';
 import { styles } from './style.js';
 import Header from 'AwesomeProject/src/components/Header';
+import { connect } from 'react-redux';
 
 class Home extends Component {
     constructor(props) {
@@ -17,6 +18,9 @@ class Home extends Component {
             city: 'Ankara'
         });
         console.log(this.state.city)
+    }
+    editSchool = (name) => {
+        alert(name)
     }
     componentDidMount() {
         var data = [
@@ -40,12 +44,15 @@ class Home extends Component {
                 <Text>{city}</Text>
                 <Text>{country}</Text>
                 {
-                    schools.map((school) => {
-                        var name=school.name+'universty';
+                    schools.map((school, key) => {
+                        var name = school.name + 'universty';
                         return (
-                            <View>
+                            <View style={[styles.schoolItem, { backgroundColor: 'red' }]} key={key}>
                                 <Text>{name}</Text>
                                 <Text>{school.city}</Text>
+                                <TouchableOpacity style={styles.customButton} onPress={() => this.editSchool(school.name)}>
+                                    <Text style={styles.buttonText}>Düzenle</Text>
+                                </TouchableOpacity>
                             </View>
 
                         )
@@ -56,11 +63,21 @@ class Home extends Component {
                 </TouchableOpacity>
                 <Button
                     title="Go to Jane's profile"
-                    onPress={() => navigate('Profile', { headerTitle: 'Profile' })}
+                    onPress={() => navigate('Profile', { headerTitle: 'Deneme' })}
                 />
             </SafeAreaView>
         );
     }
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+    return {
+        city: state.home.city
+    };
+};
+
+const mapDispatchToProps = {
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
