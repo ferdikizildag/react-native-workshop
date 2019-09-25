@@ -3,6 +3,7 @@ import { View, Text, SafeAreaView, TouchableOpacity, Button } from 'react-native
 import { styles } from './style.js';
 import Header from 'AwesomeProject/src/components/Header';
 import { connect } from 'react-redux';
+import config from 'AwesomeProject/src/utils/env.js';
 
 class Home extends Component {
     constructor(props) {
@@ -34,6 +35,7 @@ class Home extends Component {
             }
         ];
         this.setState({ schools: data });
+        console.log(config)
     }
     render() {
         const { city, country, schools } = this.state;
