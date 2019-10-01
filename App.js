@@ -9,6 +9,7 @@
 import React, {Component} from 'react';
 import HomeScreen from 'AwesomeProject/src/screens/Home';
 import ProfileScreen from 'AwesomeProject/src/screens/Profile';
+import JsExampleScreen from 'AwesomeProject/src/screens/JsExample';
 
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
@@ -27,7 +28,16 @@ const MainNavigator = createStackNavigator({
       title: 'Profile',
       header: null
     }
+  },
+  JsExample: {
+    screen: JsExampleScreen,
+    navigationOptions: {
+      title: 'Js Example',
+      header: null
+    }
   }
+},{
+  initialRouteName: 'JsExample'
 });
 
 const App = createAppContainer(MainNavigator);
